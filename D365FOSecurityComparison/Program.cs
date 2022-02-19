@@ -248,7 +248,7 @@ namespace D365FOSecurityComparison
                 range = doc.Bookmarks.get_Item(ref endOfDoc).Range;
                 Microsoft.Office.Interop.Word.Paragraph para3 = doc.Content.Paragraphs.Add(range);
                 para3.Range.Text = "Privilege";
-                para3.set_Style(Microsoft.Office.Interop.Word.WdBuiltinStyle.wdStyleHeading2);
+                para3.set_Style(Microsoft.Office.Interop.Word.WdBuiltinStyle.wdStyleHeading1);
                 para3.Range.InsertParagraphAfter();
 
                 //Privs Added
