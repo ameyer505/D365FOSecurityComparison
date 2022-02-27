@@ -28,7 +28,15 @@ namespace D365FOSecurityComparison
             paths[0] = Path.GetFileNameWithoutExtension(args[0]);
             paths[1] = Path.GetFileNameWithoutExtension(args[1]);
             if(args.Length == 3)
+            {
                 fileType = args[2];
+                if(!(string.Equals(fileType, "docx", StringComparison.CurrentCultureIgnoreCase) || string.Equals(fileType, "xlsx", StringComparison.CurrentCultureIgnoreCase)))
+                {
+                    Console.WriteLine("Unknown file type, please either user docx or xlsx options.");
+                    return;
+                }
+            }
+                
 
             Console.WriteLine("Processing source files");
             srcFiles = Utility.getFiles(args[0], spinner);
@@ -103,7 +111,7 @@ namespace D365FOSecurityComparison
             Console.WriteLine("Creating security document");
             Program p = new Program();
             //Create Word document
-            if (fileType == "" || string.Equals(fileType, "doc", StringComparison.CurrentCultureIgnoreCase) || string.Equals(fileType, "docx", StringComparison.CurrentCultureIgnoreCase))
+            if (fileType == "" || string.Equals(fileType, "docx", StringComparison.CurrentCultureIgnoreCase))
             {
                 try
                 {
@@ -117,7 +125,7 @@ namespace D365FOSecurityComparison
                 }
             }
             //Create Excel document
-            else if(string.Equals(fileType, "xls", StringComparison.CurrentCultureIgnoreCase) || string.Equals(fileType, "xlsx", StringComparison.CurrentCultureIgnoreCase))
+            else if(string.Equals(fileType, "xlsx", StringComparison.CurrentCultureIgnoreCase))
             {
                 try
                 {
@@ -132,7 +140,7 @@ namespace D365FOSecurityComparison
             }
             else
             {
-                Console.WriteLine("Unknown file type added, please either user docx or xlsx options.");
+                Console.WriteLine("Unknown file type, please either use docx or xlsx options.");
                 return;
             }
 
